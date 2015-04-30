@@ -7,6 +7,7 @@ class LinterDoiuse extends Linter
 
     cmd: 'doiuse'
     executablePath: undefined
+    isNodeExecutable: yes
 
     # test.css:2:1: Flexible Box Layout Module not supported by: IE (8,9,10)
     regex: '.+:(?<line>\\d+):(?<col>\\d+):\\s(?<message>.*)'
@@ -14,16 +15,16 @@ class LinterDoiuse extends Linter
     constructor: (editor) ->
         super(editor)
 
-        atom.config.observe 'linter-doiuse.doiuseBrowsers', =>
+        @doiuseBrowsers = atom.config.observe 'linter-doiuse.doiuseBrowsers', =>
             @browsers = atom.config.get 'linter-doiuse.doiuseBrowsers'
             @_updateCmd()
 
-        atom.config.observe 'linter-doiuse.doiuseExecutablePath', =>
+        @doiuseExecutablePath = atom.config.observe 'linter-doiuse.doiuseExecutablePath', =>
             @executablePath = atom.config.get 'linter-doiuse.doiuseExecutablePath'
 
     destroy: ->
-        atom.config.unobserve 'linter-doiuse.doiuseBrowsers'
-        atom.config.unobserve 'linter-doiuse.doiuseExecutablePath'
+        @doiuseBrowsers && @doiuseBrowsers.dispose()
+        @doiuseExecutablePath && @doiuseExecutablePath.dispose()
 
     _updateCmd: ->
         @cmd = ["doiuse", "--browsers '#{@browsers}'"];
