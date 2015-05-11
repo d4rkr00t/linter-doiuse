@@ -1,7 +1,7 @@
 {
   "name": "linter-doiuse",
   "main": "./lib/init",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Atom doiuse-linter — lint css for browser support against caniuse database by",
   "repository": "https://github.com/d4rkr00t/linter-doiuse",
   "license": "MIT",
