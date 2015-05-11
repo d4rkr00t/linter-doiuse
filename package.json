@@ -6,7 +6,7 @@
   "repository": "https://github.com/d4rkr00t/linter-doiuse",
   "license": "MIT",
   "linter-package": true,
-  "activationEvents": [],
+  "activationCommands": [],
   "engines": {
     "atom": ">0.50.0"
   },
